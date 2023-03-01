@@ -2,13 +2,15 @@ package Players.Magic;
 
 
 import Players.Character;
+import Players.behaviours.iAttack;
+import Players.behaviours.iDefend;
 import WeaponInventory.Spells;
 import WeaponInventory.Weapon;
 
 
 import java.util.ArrayList;
 
-public abstract class Magic extends Character {
+public abstract class Magic extends Character implements iAttack, iDefend {
 
     private Spells currentSpell;
     private ArrayList<Spells> spellBook;
@@ -16,13 +18,33 @@ public abstract class Magic extends Character {
     private ArrayList<Weapon> allowed_pets;
     private Weapon currentWeapon;
 
-    public Magic(String name, int life, int strength, int defense) {
+    private int SP;
+
+
+    public Magic(String name, int life, int strength, int defense, int SP) {
         super(name, life, strength, defense);
         this.currentSpell = Spells.LIGHTNINGBOLT;
         this.spellBook = new ArrayList<Spells>();
         this.petList = new ArrayList<Weapon>();
         this.allowed_pets = new ArrayList<Weapon>();
         this.currentWeapon = Weapon.LIZARD;
+        this.SP = SP;
+    }
+
+    public int getSP() {
+        return SP;
+    }
+
+    public void setSP(int newSP){
+        this.SP = newSP;
+    }
+
+    public int reduceSP( int usedSP) {
+        return this.SP -= usedSP;
+    }
+
+    public int getSPNeededForSpell(Spells spellToUse){
+        return spellToUse.getSpellCost();
     }
 
     public Spells getCurrentSpell() {
@@ -48,6 +70,7 @@ public abstract class Magic extends Character {
         return this.currentWeapon;
     }
 
+
     public void setAllowedPet(ArrayList<Weapon> input_allowedPet) {
 
         ArrayList<Weapon> returnList = new ArrayList<>();
@@ -66,5 +89,35 @@ public abstract class Magic extends Character {
         return this.getStrength() + this.getCurrentWeapon().getDamage() + this.getCurrentSpell().getDamage();
     }
 
+    @Override
+    public void attack(iDefend enemy) {
 
+        // get the attack
+        int attack = this.getAttackValue();
+
+        // get the defence
+        int defense = enemy.getDefense();
+
+        // calculate damage
+        int damage = attack - (defense / 2);
+
+        // reduce life
+        enemy.receiveDamage(damage);
+
+        //available SP
+        int availableSP = this.getSP();
+
+        //get SP from chosen spell
+        int spFromSpell = this.getCurrentSpell().getSpellCost();
+
+        //set reduced SP as new SP
+        this.setSP(availableSP - spFromSpell);
+    }
+
+    public void receiveDamage(int damage){};
+
+    public int getDefense() {
+        return this.getDefense();
+
+    }
 }
