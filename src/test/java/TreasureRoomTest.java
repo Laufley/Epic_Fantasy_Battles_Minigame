@@ -2,6 +2,7 @@ import Players.Physical.Dwarf;
 import Players.Physical.Knight;
 import Players.Character;
 import Rooms.Room;
+import Rooms.Treasure;
 import Rooms.TreasureRoom;
 import WeaponInventory.Weapon;
 import org.junit.Before;
@@ -24,7 +25,6 @@ public class TreasureRoomTest {
         palace = new TreasureRoom("Palace Armoury", galahad);
         treasure = "Gold!";
     }
-
     @Test
     public void canGetLocationName() {
         assertEquals("Palace Armoury", palace.getLocation());
@@ -35,27 +35,29 @@ public class TreasureRoomTest {
     }
     @Test
     public void canAddtreasure(){
-        palace.addTreasure("Gold!");
-        assertEquals("Gold!", palace.getTreasureList().get(0));
+        palace.addTreasure(Treasure.GOLD);
+        assertEquals(Treasure.GOLD, palace.getTreasureList().get(0));
         assertEquals(1, palace.getTreasureList().size());
     }
     @Test
     public void canRemoveTreasureFromRoomList(){
-        String diamonds = "diamonds";
-        palace.addTreasure(diamonds);
-        palace.addTreasure("Gold!");
-        palace.addTreasure("Platinum");
-        assertEquals("Gold!", palace.getTreasureList().get(1));
+        palace.addTreasure(Treasure.DIAMONDS);
+        palace.addTreasure(Treasure.GOLD);
+        palace.addTreasure(Treasure.PLATINUM);
+        assertEquals(Treasure.GOLD, palace.getTreasureList().get(1));
 
         assertEquals(3, palace.getTreasureList().size());
-        assertEquals(true, palace.removeTreasure(diamonds));
+        assertEquals(true, palace.removeTreasure(Treasure.DIAMONDS));
         assertEquals(2, palace.getTreasureList().size());
     }
 
     @Test
     public void characterCanObtainTreasure(){
-
+        palace.getPlayer().addTreasure(Treasure.GOLD);
+        assertEquals(Arrays.asList(Treasure.GOLD), galahad.getBag() );
+        assertEquals(1, palace.getPlayer().getBag().size());
     }
+    
 
 
 }

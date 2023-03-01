@@ -4,7 +4,7 @@ import Players.Character;
 import java.util.ArrayList;
 
 public class TreasureRoom extends Room {
-    private ArrayList<String> treasure_list;
+    private ArrayList<Treasure> treasure_list;
     private Character player;
 
 //    constructor
@@ -21,10 +21,10 @@ public class TreasureRoom extends Room {
     }
 
     //setters & getters
-    public ArrayList<String> getTreasureList() {
+    public ArrayList<Treasure> getTreasureList() {
         return treasure_list;
     }
-    public void setTreasureList(ArrayList<String> treasure) {
+    public void setTreasureList(ArrayList<Treasure> treasure) {
         this.treasure_list = treasure;
     }
     public Character getPlayer() {
@@ -36,10 +36,10 @@ public class TreasureRoom extends Room {
 
 
     // methods
-    public void addTreasure(String treasure_to_add){
+    public void addTreasure(Treasure treasure_to_add){
         this.getTreasureList().add(treasure_to_add);
     }
-    public boolean removeTreasure(String treasure_to_remove){
+    public boolean removeTreasure(Treasure treasure_to_remove){
         if (this.getTreasureList().contains(treasure_to_remove)){
             this.getTreasureList().remove(treasure_to_remove);
             return true;
