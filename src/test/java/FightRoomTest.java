@@ -37,5 +37,13 @@ public class FightRoomTest {
     public void canGetEnemy() {
         assertEquals(dwarf, dungeon.getEnemy());
     }
-    
+    @Test
+    public void playerCanDamageEnemy(){
+
+    }
+    @Test
+    public void enemyCanDamagePlayer(){
+
+    }
+
 }
