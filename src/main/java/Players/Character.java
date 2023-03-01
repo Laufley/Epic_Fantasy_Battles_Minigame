@@ -2,6 +2,9 @@ package Players;
 
 import Players.behaviours.iAttack;
 import Players.behaviours.iDefend;
+import Rooms.Treasure;
+
+import java.util.ArrayList;
 
 public abstract class Character implements iAttack, iDefend {
 
@@ -9,12 +12,14 @@ public abstract class Character implements iAttack, iDefend {
     private int life;
     private int strength;
     private int defense;
+    private ArrayList<Treasure> bag;
 
     public Character(String name, int life, int strength, int defense) {
         this.name = name;
         this.life = life;
         this.strength = strength;
         this.defense = defense;
+        this.bag = new ArrayList<>();
     }
 
     public String getName() {
@@ -31,9 +36,6 @@ public abstract class Character implements iAttack, iDefend {
 
     public void setLife(int life) {
         this.life = life;
-    }
-    public void reduceLife(int amount_to_reduce){
-        this.life -= amount_to_reduce;
     }
 
     public int getStrength() {
@@ -52,6 +54,14 @@ public abstract class Character implements iAttack, iDefend {
         this.defense = defense;
     }
 
+    public ArrayList<Treasure> getBag(){ return this.bag; }
+
+    public void addTreasure(Treasure item) { this.bag.add(item); }
+
+    // ################# //
+    // #### methods #### //
+    // ################# //
+
     public void attack(iDefend enemy){
 
         // get the attack
@@ -65,6 +75,7 @@ public abstract class Character implements iAttack, iDefend {
         // reduce life
         enemy.receiveDamage(damage);
     }
+
     public int getAttackValue(){
         return this.getStrength();
     }
@@ -73,5 +84,7 @@ public abstract class Character implements iAttack, iDefend {
         this.life -= amount_of_damage;
     }
 
-
+    public void reduceLife(int amount_to_reduce){
+        this.life -= amount_to_reduce;
+    }
 }
