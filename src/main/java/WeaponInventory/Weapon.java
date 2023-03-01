@@ -6,7 +6,11 @@ public enum Weapon {
     DAGGER (5, 9, "handWeapon"),
     CLUB (10, 8, "handWeapon"),
     SLING (4, 10, "rangeWeapon"),
-    AMULET (5, 7, "magicWeapon")
+    AMULET (5, 7, "magicWeapon"),
+
+    GOOSE (9, 1, "pet"),
+    OGRE (6, 2, "pet"),
+    LIZARD(4, 3, "pet"),
     ;
 
     private final int damage;
