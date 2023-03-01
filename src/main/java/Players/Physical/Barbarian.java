@@ -13,4 +13,14 @@ public class Barbarian extends Physical {
         this.getAllowedWeapons().addAll(Arrays.asList(Weapon.SLING, Weapon.SWORD, Weapon.CLUB));
     }
 
+
+    @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void receiveDamage(int damage) {
+
+    }
 }

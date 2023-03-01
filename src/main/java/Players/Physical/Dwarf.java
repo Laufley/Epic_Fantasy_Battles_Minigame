@@ -14,7 +14,10 @@ public class Dwarf extends Physical{
     }
 
 
+    @Override
+    public void attack() {
 
+    }
 
 
 }

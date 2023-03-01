@@ -9,4 +9,13 @@ public class GiantFrenziedGoose extends Creature{
 
     }
 
+    @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void receiveDamage(int damage) {
+
+    }
 }
