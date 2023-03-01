@@ -34,7 +34,7 @@ public abstract class Physical extends Character {
 
             ArrayList<Weapon> returnList = new ArrayList<>();
              for (Weapon weapon : input_allowedWeapons) {
-                 if (weapon.getType().equals("handWeapon")) {
+                 if (weapon.getType().equals("handWeapon") || weapon.getType().equals("rangeWeapon")) {
                      returnList.add(weapon);
                  }
                  }
