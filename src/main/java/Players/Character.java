@@ -1,6 +1,9 @@
 package Players;
 
-public abstract class Character {
+import Players.behaviours.iAttack;
+import Players.behaviours.iDefend;
+
+public abstract class Character implements iAttack, iDefend {
 
     private String name;
     private int life;
@@ -29,6 +32,9 @@ public abstract class Character {
     public void setLife(int life) {
         this.life = life;
     }
+    public void reduceLife(int amount_to_reduce){
+        this.life -= amount_to_reduce;
+    }
 
     public int getStrength() {
         return strength;
@@ -45,4 +51,27 @@ public abstract class Character {
     public void setDefense(int defense) {
         this.defense = defense;
     }
+
+    public void attack(iDefend enemy){
+
+        // get the attack
+        int attack = this.getAttackValue();
+        // get the defence
+        int defense = enemy.getDefense();
+
+        // calculate damage
+        int damage = attack - (defense / 2);
+
+        // reduce life
+        enemy.receiveDamage(damage);
+    }
+    public int getAttackValue(){
+        return this.getStrength();
+    }
+
+    public void receiveDamage(int amount_of_damage){
+        this.life -= amount_of_damage;
+    }
+
+
 }

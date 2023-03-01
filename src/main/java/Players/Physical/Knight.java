@@ -20,4 +20,13 @@ public class Knight extends Physical {
     }
 
 
+    @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void receiveDamage(int damage) {
+
+    }
 }
