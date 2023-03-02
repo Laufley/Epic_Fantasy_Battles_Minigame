@@ -49,7 +49,7 @@ public abstract class Physical extends Character {
     public void setCurrentWeapon(Weapon currentWeapon) {
         this.currentWeapon = currentWeapon;
     }
-
+    public void addWeapon(Weapon to_add) { this.inventoryWeapons.add(to_add); }
     @Override
     public int getAttackValue(){
         return this.getStrength() + this.getCurrentWeapon().getDamage();

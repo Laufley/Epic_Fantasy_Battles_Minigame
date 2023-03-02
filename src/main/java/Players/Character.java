@@ -62,7 +62,7 @@ public abstract class Character implements iAttack, iDefend {
     // #### methods #### //
     // ################# //
 
-    public void attack(iDefend enemy){
+    public int attack(iDefend enemy){
 
         // get the attack
         int attack = this.getAttackValue();
@@ -74,6 +74,7 @@ public abstract class Character implements iAttack, iDefend {
 
         // reduce life
         enemy.receiveDamage(damage);
+        return damage;
     }
 
     public int getAttackValue(){

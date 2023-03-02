@@ -90,7 +90,7 @@ public abstract class Magic extends Character implements iAttack, iDefend {
     }
 
     @Override
-    public void attack(iDefend enemy) {
+    public int attack(iDefend enemy) {
 
         // get the attack
         int attack = this.getAttackValue();
@@ -112,6 +112,8 @@ public abstract class Magic extends Character implements iAttack, iDefend {
 
         //set reduced SP as new SP
         this.setSP(availableSP - spFromSpell);
+
+        return damage; //so we can print to console later !
     }
 
     public void receiveDamage(int damage){};
